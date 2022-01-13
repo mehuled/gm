@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"fmt"
 	"log"
@@ -10,9 +9,8 @@ import (
 func main() {
 	http.HandleFunc("/", gm)
 	http.HandleFunc("/headers", headers)
-	log.Println(http.ListenAndServe("localhost:8000", nil))
+	log.Println(http.ListenAndServe("0.0.0.0:8000", nil))
 }
-
 
 func gm(w http.ResponseWriter, req *http.Request) {
 	fmt.Fprintf(w, "gm")
@@ -20,6 +18,6 @@ func gm(w http.ResponseWriter, req *http.Request) {
 
 func headers(w http.ResponseWriter, req *http.Request) {
 	for key, val := range req.Header {
-		fmt.Fprintf(w,"%s : %s \n", key, val)
+		fmt.Fprintf(w, "%s : %s \n", key, val)
 	}
 }
